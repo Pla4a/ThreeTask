@@ -124,7 +124,7 @@ namespace Three {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 3;
-			this->textBox2->Text = L"-5";
+			this->textBox2->Text = L"5";
 			this->textBox2->Leave += gcnew System::EventHandler(this, &MyForm::textBox2_Leave);
 			// 
 			// textBox3
@@ -275,28 +275,21 @@ namespace Three {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		double xn, xk, xh, x, y, a, ymax, ymin, yt;
-		int  i;
-		//Ïðîâåðêà ââîäà äàííûõ â êîìïîíåíòû textBox 
-		if ((textBox1->Text != "") && (textBox2->Text != "") &&
-			(textBox3->Text != "") && (textBox4->Text != ""))
+		int n, i;
+		if ((textBox1->Text != "") && (textBox2->Text != "") && (textBox3->Text != "") && (textBox4->Text != ""))
 		{
-			//Ïðåîáðàçîâàíèå ââåäåííûõ äàííûõ â òèï double 
 			xn = Convert::ToDouble(textBox1->Text);
 			xk = Convert::ToDouble(textBox2->Text);
 			xh = Convert::ToDouble(textBox3->Text);
 			a = Convert::ToDouble(textBox4->Text);
-			//Î÷èñòêà ñòîëáöîâ òàáëèöû 
 			dataGridView1->Columns->Clear();
-			//Ñîçäàíèå äâóõ ñòîëáöîâ â òàáëèöå 
 			dataGridView1->ColumnCount = 2;
-			//Ñîçäàíèå â òàáëèöå ñòðîê 
 			dataGridView1->Rows->Add(ceil((xk - xn) / xh) + 1);
-			//Çàíåñåíèå â âåðõíþþ ñòðîêó òàáëèöû â ïåðâóþ ÿ÷åéêó òåêñò «Õ», âî âòîðóþ òåêñò «Ó»
 			dataGridView1->Columns[0]->Name = " X";
 			dataGridView1->Columns[1]->Name = " Y";
-			i = 0;
+			i = 0.15;
 			x = xn;
-			ymax = -1.8e307; ymin = 1.8e307;
+			ymax = -6.1; ymin = 1.3;
 			while (x <= xk)
 			{
 				if (x <= 0) { y = (2 * x + 1) * pow(fabs(x) + 2, 3); }
@@ -304,22 +297,22 @@ namespace Three {
 					if (x <= a) { y = exp(x) + sin(x + 2); }
 					else
 					{
-						y = 3 * log(sqrt(5 * pow(sin(x), 2) + 2));
+						y = 3 * log (pow(pow(sin(x), 2)+2, 1/5));
 					}
-				//Çàíåñåíèå â ïåðâûé ñòîëáåö çíà÷åíèé àðãóìåíòà Õ 
 				dataGridView1->Rows[i]->Cells[0]->Value = Convert::ToString(x);
-				//Ïåðåìåííîé yt ïðèñâàèâàåò îêðóãëåííîå äî äâóõ çíàêîâ ïîñëå çàïÿòîé çíà÷åíèå ó
 				yt = ceil(y * 100) / 100;
-				//Âûâîä âî âòîðîì ñòîëáöå òàáëèöû çíà÷åíèå ôóíêöèè Ó 
-				dataGridView1->Rows[i]->Cells[1]->Value
-					= Convert::ToString(yt);
-				//íàõîäèò ìàêñèìàëüíîå è ìèíèìàëüíîå çíà÷åíèå è îêðóãëÿåò äî äâóõ çíàêîâ ïîñëå çàïÿòîé
-				if (y > ymax) ymax = ceil(y * 100) / 100; if
-					(y < ymin) ymin = ceil(y * 100) / 100;
+				dataGridView1->Rows[i]->Cells[1]->Value = Convert::ToString(yt);
+				if (y > ymax)
+				{
+					ymax = ceil(y * 100) / 100;
+				}
+				if (y < ymin)
+				{
+					ymin = ceil(y * 100) / 100;
+				}
 				x = x + xh;
 				i++;
 			}
-			//âûâîäèò â êîìïîíåíòû textbox ìàêñèìàëüíîå è ìèíèìàëüíîå çíà÷åíèå ôóíêöèè
 			textBox5->Text = Convert::ToString(ymax);
 			textBox6->Text = Convert::ToString(ymin);
 		}
