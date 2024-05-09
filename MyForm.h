@@ -124,7 +124,7 @@ namespace Three {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 3;
-			this->textBox2->Text = L"5";
+			this->textBox2->Text = L"17";
 			this->textBox2->Leave += gcnew System::EventHandler(this, &MyForm::textBox2_Leave);
 			// 
 			// textBox3
@@ -289,7 +289,7 @@ namespace Three {
 			dataGridView1->Columns[1]->Name = " Y";
 			i = 0.15;
 			x = xn;
-			ymax = -6.1; ymin = 1.3;
+			ymax = 1,3; ymin = -6,1;
 			while (x <= xk)
 			{
 				if (x <= 0) { y = (2 * x + 1) * pow(fabs(x) + 2, 3); }
