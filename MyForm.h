@@ -297,6 +297,7 @@ namespace Three {
 					if (x <= a) { y = exp(x) + sin(x + 2); }
 					else
 					{
+						if (x > a)
 						y = 3 * log (pow(pow(sin(x), 2)+2, 1/5));
 					}
 				dataGridView1->Rows[i]->Cells[0]->Value = Convert::ToString(x);
@@ -331,23 +332,17 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void textBox1_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox1->Text;
 	l = str->Length;
-	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
 	t = 0;
-	//êîëëè÷åñòâî çàïÿòûõ â ñòðîêå (äàáû èçáåæàòü âàðèàíòà 0, 2384, 1254, 1251 – ýòî íå ÷èñëî) 
 	k = 0;
-	//äâèãàåì èíäåêñàòîð, åñëè íàøå ÷èñëî îòðèöàòåëüíîå 
 	if (str[t] == '-') t++;
-	//÷èñëî íå ìîæåò íà÷èíàòüñÿ ñ çàïÿòîé 
 	if (str[t] == ',') a = false; while (t < l)
 	{
 		if (str[t] == ',')
-			//åñëè çàïÿòàÿ ñòîèò ïîñëåäíèì ñèìâîëîì èëè çàïÿòàÿ óæå áûëà íàéäåíà
 		{
 			if (t == l - 1 || k > 0) a = false; k++;
 
 		}
 
-		//åñëè t-ûé ñèìâîë íå ëåæèò â äèàïàçîíå îò '0' äî '9'
 		else if (str[t] < '0' || str[t] > '9') a = false;
 
 		t++;
@@ -355,27 +350,20 @@ private: System::Void textBox1_Leave(System::Object^ sender, System::EventArgs^ 
 	if (a == false)
 	{
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ this->textBox1->Focus();
 	}
 }
 private: System::Void textBox2_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox2->Text;
 	l = str->Length;
-	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
 	t = 0;
-	//êîëëè÷åñòâî çàïÿòûõ â ñòðîêå (äàáû èçáåæàòü âàðèàíòà 0, 2384, 1254, 1251  ýòî íå ÷èñëî) 
 	k = 0;
-	//äâèãàåì èíäåêñàòîð, åñëè íàøå ÷èñëî îòðèöàòåëüíîå 
 	if (str[t] == '-') { t++; }
-	//÷èñëî íå ìîæåò íà÷èíàòüñÿ ñ çàïÿòîé 
 	if (str[t] == ',' || str[t] == '.') { a = false; } while (t < l)
 	{
 		if (str[t] == ',' || str[t] == '.')
-			//åñëè çàïÿòàÿ ñòîèò ïîñëåäíèì ñèìâîëîì èëè çàïÿòàÿ óæå áûëà íàéäåíà 
 		{
 			if (t == l - 1 || k > 0) { a = false; } k++;
 		}
-		//åñëè t-ûé ñèìâîë íå ëåæèò â äèàïàçîíå îò '0' äî '9' 
 		else if (str[t] < '0' ||
 			str[t] > '9') {
 			a = false;
@@ -385,28 +373,21 @@ private: System::Void textBox2_Leave(System::Object^ sender, System::EventArgs^ 
 	if (a == false)
 	{
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox2->Focus();
 	}
 }
 private: System::Void textBox3_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox2->Text;
 	l = str->Length;
-	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
 	t = 0;
-	//êîëëè÷åñòâî çàïÿòûõ â ñòðîêå (äàáû èçáåæàòü âàðèàíòà 0, 2384, 1254, 1251  ýòî íå ÷èñëî) 
 	k = 0;
-	//äâèãàåì èíäåêñàòîð, åñëè íàøå ÷èñëî îòðèöàòåëüíîå 
 	if (str[t] == '-') { t++; }
-	//÷èñëî íå ìîæåò íà÷èíàòüñÿ ñ çàïÿòîé 
 	if (str[t] == ',' || str[t] == '.') { a = false; } while (t < l)
 	{
 		if (str[t] == ',' || str[t] == '.')
-			//åñëè çàïÿòàÿ ñòîèò ïîñëåäíèì ñèìâîëîì èëè çàïÿòàÿ óæå áûëà íàéäåíà 
 		{
 			if (t == l - 1 || k > 0) { a = false; } k++;
 		}
-		//åñëè t-ûé ñèìâîë íå ëåæèò â äèàïàçîíå îò '0' äî '9' 
 		else if (str[t] < '0' ||
 			str[t] > '9') {
 			a = false;
@@ -416,28 +397,21 @@ private: System::Void textBox3_Leave(System::Object^ sender, System::EventArgs^ 
 	if (a == false)
 	{
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox2->Focus();
 	}
 }
 private: System::Void textBox4_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox2->Text;
 	l = str->Length;
-	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
 	t = 0;
-	//êîëëè÷åñòâî çàïÿòûõ â ñòðîêå (äàáû èçáåæàòü âàðèàíòà 0, 2384, 1254, 1251  ýòî íå ÷èñëî) 
 	k = 0;
-	//äâèãàåì èíäåêñàòîð, åñëè íàøå ÷èñëî îòðèöàòåëüíîå 
 	if (str[t] == '-') { t++; }
-	//÷èñëî íå ìîæåò íà÷èíàòüñÿ ñ çàïÿòîé 
 	if (str[t] == ',' || str[t] == '.') { a = false; } while (t < l)
 	{
 		if (str[t] == ',' || str[t] == '.')
-			//åñëè çàïÿòàÿ ñòîèò ïîñëåäíèì ñèìâîëîì èëè çàïÿòàÿ óæå áûëà íàéäåíà 
 		{
 			if (t == l - 1 || k > 0) { a = false; } k++;
 		}
-		//åñëè t-ûé ñèìâîë íå ëåæèò â äèàïàçîíå îò '0' äî '9' 
 		else if (str[t] < '0' ||
 			str[t] > '9') {
 			a = false;
@@ -447,7 +421,6 @@ private: System::Void textBox4_Leave(System::Object^ sender, System::EventArgs^ 
 	if (a == false)
 	{
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox2->Focus();
 	}
 }
